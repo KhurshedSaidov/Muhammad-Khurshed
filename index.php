@@ -11,7 +11,7 @@ function Atlanta
 (int $pepsi,
 int $orange_juice,
 int $lemon,
-int $ice,)
+int $ice)
 
 {
     echo "
@@ -20,3 +20,27 @@ int $ice,)
     ";
 }
 Atlanta(100, 60, 30, 5);
+
+/*
+Ingredients for JUNGLE BANANA MINT COCKTAIL
+    Bananas (large): 2 PC.
+    Mint (twigs): 4 PC.
+    Honey: 2 tablespoon
+    Mineral water: taste
+*/
+function cocktailJungle (
+    int $banana,
+    int $mint,
+    int $honey
+) 
+{
+    echo "
+    <hr style='margin:10px 0 10px 0;>
+    1. $banana банана очистить и крупно нарезать.<br>
+    2. $mint мята вымыть, обсушить и разобрать на листики и растереть в кашицу.<br>
+    3. Взбить блендером бананы с мятой и $honey стол.л медом.<br>
+    4. Влить минеральную воду и снова взбить.<br>
+    5. Украшение. Банан нарезать кружочками.<br>
+    6. Готовый коктейль разлить по бокалам и украсить кружочками банана.";
+}
+cocktailJungle(2, 4, 2);
