@@ -1,18 +1,18 @@
 <?php
 
-function typeChecking($latutude, $longtitude)
+function validateFloat($latutude, $longtitude)
 {
     var_dump(is_float($latutude));
     var_dump(is_float($longtitude));
 }
 
-function vallenght(int $latutude, int $longtitude)
+function validateValLenght(int $latutude, int $longtitude)
 {
     echo strlen($latutude); echo "<br>";
     echo strlen($longtitude); echo "<br>";
 }
 
-function mysquare(int $latutude, int $longtitude)
+function validateMySquare(int $latutude, int $longtitude)
 {
     $min = 8;
     $max = 15;
@@ -37,9 +37,9 @@ function coordinates(int $latutude, int $longtitude)
 {
     $latutude       = ["23134.12331"];
     $longtitude     = ["2313213.4244"];
-    $type_checking  = typeChecking($latutude, $longtitude);
-    $val_lenght     = vallenght($latutude, $longtitude);
-    $in_my_square   = mysquare($latutude, $longtitude);
+    $type_checking  = validateFloat($latutude, $longtitude);
+    $val_lenght     = validateValLenght($latutude, $longtitude);
+    $in_my_square   = validateMySquare($latutude, $longtitude);
     return "$type_checking $val_lenght $in_my_square";
 
 }
