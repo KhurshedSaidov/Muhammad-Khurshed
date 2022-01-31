@@ -2,9 +2,9 @@
 // Проверить типы данных
 function validateString($fish_name)
 {
-    if ((int)$fish_name != 0) {
-        return "422: The type of Fish name is incorrectly! ";
-    } else return "200: Fish name type is ok! ";
+    if (is_string($fish_name)) {
+        return "200: Fish name type is ok! ";
+    } else return "422: The type of Fish name is incorrectly! ";
 }
 
 function validateInteger($fish_number)
