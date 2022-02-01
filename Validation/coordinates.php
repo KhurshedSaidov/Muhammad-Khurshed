@@ -1,48 +1,68 @@
 <?php
 
-function validateFloat($latutude, $longtitude)
+function validateFloatlatutude($latutude) 
 {
-    var_dump(is_float($latutude));
-    var_dump(is_float($longtitude));
+    if(is_float($latutude)) { return "type of latutude is float";
+    }
+    else return "422: The type of latutude is incorrectly!";
+}
+function validateFloatlongtutude($longtutude)
+{    
+    if(is_float($longtutude)) { return "type of longtutude is float";
+    }
+    else return "422: The type of longtutude is incorrectly!";
+}
+function validateValueLenghtLatutude($latutude)
+{
+    return (int) (log($latutude, 10) + 1);  
+}
+function validateValueLenghtLongtutude($longtutude)
+{
+    return (int) (log($longtutude, 10) + 1);  
+}
+function validateMySquareMinLatutude($latutude, $min_value)
+{
+    if($latutude > $min_value) {return "422: latutude is not in my square";
+    }
+    else return "OK";
+}
+function validateMySquareMaxLatutude($latutude, $max_value)
+{
+    if($latutude > $max_value) {return "422: latutude is not in my square";
+    }
+    else return "OK";
+}
+function validateMySquareMinLongtutude($longtutude, $min_value)
+{
+    if($longtutude > $min_value) {return "422: longtutude is not in my square";
+    }
+    else return "OK";
+}
+function validateMySquareMaxLongtutude($longtutude, $max_value)
+{
+    if($longtutude > $max_value) {return "422: longtutude is not in my square";
+    }
+    else return "OK";
 }
 
-function validateValLenght(int $latutude, int $longtitude)
+
+function coordinates($latutude, $longtutude, $min_value, $max_value)
 {
-    echo strlen($latutude); echo "<br>";
-    echo strlen($longtitude); echo "<br>";
+    $validate_float_lat = validateFloatlatutude($latutude);
+    $validate_float_long = validateFloatlongtutude($longtutude);
+    $validate_val_lenght_latutude = validateValueLenghtLatutude($latutude);
+    $validate_val_lenght_longtutude = validateValueLenghtLongtutude($longtutude);
+    $validate_my_square_min_latutude = validateMySquareMinLatutude($latutude, $min_value);
+    $validate_my_square_max_latutude = validateMySquareMaxLatutude($latutude, $max_value);
+    $validate_my_square_min_longtutude = validateMySquareMinLongtutude($longtutude, $min_value);
+    $validate_my_square_max_longtutude = validateMySquareMaxLongtutude($longtutude, $min_value);
+    return $validate_float_lat . $validate_float_long . $validate_val_lenght_latutude . $validate_val_lenght_longtutude . 
+    $validate_my_square_min_latutude. $validate_my_square_max_latutude . $validate_my_square_min_longtutude .
+    $validate_my_square_max_longtutude;
 }
 
-function validateMySquare(int $latutude, int $longtitude)
-{
-    $min = 8;
-    $max = 15;
-    if (strlen(string: $latutude)  >= $max)
-{
-    return "A lot of characters in coordinates. ";
-}
-    if (strlen(string: $longtitude)  >= $max)
-{
-    return "A lot of characters in coordinates. ";
-}
-    if (strlen($latutude, $latutude) < $min)
-{
-    return "Few characters in coordinates. ";
-}
-    if (strlen($latutude, $longtitude) < $min)
-{
-    return "Few characters in coordinates. ";
-}
-
-function coordinates(int $latutude, int $longtitude)
-{
-    $latutude       = ["23134.12331"];
-    $longtitude     = ["2313213.4244"];
-    $type_checking  = validateFloat($latutude, $longtitude);
-    $val_lenght     = validateValLenght($latutude, $longtitude);
-    $in_my_square   = validateMySquare($latutude, $longtitude);
-    return "$type_checking $val_lenght $in_my_square";
-
-}
-$latutude   = readline("Input latutude: ");
-$longtitude = readline("Input longtitude: ");
-echo coordinates($latutude, $longtitude);
+$latutude = readline("Input latutude: ");
+$longtutude = readline("Input logtutude: ");
+$min_value = 123123.312312;
+$max_value = 121221.525353;
+echo coordinates($latutude, $longtutude, $min_value, $max_value);
