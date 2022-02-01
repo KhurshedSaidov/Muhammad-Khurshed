@@ -20,7 +20,7 @@ int $ice)
     ";
 }
 Atlanta(100, 60, 30, 5);
-
+echo "hello";
 /*
 Ingredients for JUNGLE BANANA MINT COCKTAIL
     Bananas (large): 2 PC.
@@ -43,4 +43,6 @@ function cocktailJungle (
     5. Украшение. Банан нарезать кружочками.<br>
     6. Готовый коктейль разлить по бокалам и украсить кружочками банана.";
 }
-cocktailJungle(2, 4, 2);
+cocktailJungle(3, 4, 2);
+
+?>
