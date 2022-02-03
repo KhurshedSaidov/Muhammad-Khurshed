@@ -3,9 +3,9 @@
  function validateFloat($value) : string
 {
 	if (!filter_var($value, FILTER_VALIDATE_FLOAT)) {
-		return "ERROR: Type of value must be float!";
-	} else {
 		return "Type of value is correct!";
+	} else {
+		return "ERROR: Type of value must be float!";
 	}
 }
 
