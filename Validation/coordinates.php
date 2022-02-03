@@ -1,96 +1,58 @@
 <?php
 
-function validateFloatlatutude($latutude) 
+function validateFloat($value) : string
 {
-    if(is_float($latutude)) 
-    { 
-        return "type of latutude is float";
-    }
-    else return "422: The type of latutude is incorrectly!";
-}
-function validateFloatlongtutude($longtutude)
-{    
-    if(is_float($longtutude)) 
-    { 
-        return "type of longtutude is float";
-    }
-    else return "422: The type of longtutude is incorrectly!";
+	if (!filter_var($value, FILTER_VALIDATE_FLOAT)) {
+		return "ERROR: Type of value must be float!";
+	} else {
+		return "Type of value is correct!";
+	}
 }
 
-function validateValueCheckingForLatutude($latutude, $value_one, $value_four)
+function validateMin($value, $min_value) : string
 {
-    If($latutude >= $value_one)
-    {
-        return "this is the normal value for coordinate";
-    }
-    else return "422: too small value for coordinates";
-    
-    If($latutude <= $value_four)
-    {
-        return "422: too long value for coordinates";
-    }
-    else return "this is the normal value for coordinate";
+	if ($value <= $min_value) {
+		return "ERROR: Too few characters sent";
+	} else {
+		return "Min characters OK";
+	}
 }
-function validateValueCheckingForLongtutude($longtutude, $value_one, $value_four)
+
+function validateMax($value, $max_value) : string
 {
-    If($longtutude >= $value_one)
-    {
-        return "this is the normal value for coordinate";
-    }
-    else return "422: too small value for coordinates";
-    
-    If($longtutude <= $value_four)
-    {
-        return "422: too long value for coordinates";
-    }
-    else return "this is the normal value for coordinate";
+	if ($value >= $max_value) {
+		return "ERROR: Too many characters sent";
+	} else {
+		return "Max characters OK";
+	}
 }
-function validateMySquareLatutude($latutude, $value_one, $value_four)
+
+function validateMySquare($value, $latitude1, $longitude2) : string
 {
-    If($latutude >= $value_one)
-    {
-        return "latutude is in my square";
+    if ($value >= $latitude1 && $value <= $longitude2) {
+        return "Coordinates is in my square.";
+    } else {
+        return "ERROR: coordinates is not on my square!";
     }
-    else return "422: latutude is not in my square";
-    
-    If($latutude <= $value_four)
-    {
-        return "422: latutude is not in my square";
-    }
-    else return "latutude is in my square";
-}
-function validateMySquareLongtutude($longtutude, $value_one, $value_four)
-{
-    If($longtutude >= $value_one)
-    {
-        return "longtutude is in my square";
-    }
-    else return "422: latutude is not in my square";
-    
-    If($longtutude <= $value_four)
-    {
-        return "422: longtutude is not in my square";
-    }
-    else return "latutude is in my square";
 }
 
 
-function coordinates($latutude, $longtutude, $value_one, $value_two, $value_three, $value_four)
-{
-    $validate_float_lat = validateFloatlatutude($latutude);
-    $validate_float_long = validateFloatlongtutude($longtutude);
-    $validate_val_checking_lat = validateValueCheckingForLatutude($latutude, $value_one, $value_four);
-    $validate_val_checking_long = validateValueCheckingForLongtutude($longtutude, $value_one, $value_four);
-    $validate_my_square_lat = validateMySquareLatutude($latutude, $value_one, $value_four);
-    $validate_my_square_long = validateMySquareLongtutude($longtutude, $value_one, $value_four);
-    return $validate_float_lat . $validate_float_long. $validate_val_checking_lat . $validate_val_checking_long .
-    $validate_my_square_lat . $validate_my_square_long;
-}
+//business logic
+$latitude = readline("Input latitude: ");
+$longitude = readline("Input longitude: ");
+$latitude1 = 500;
+$latitude2 = 1500;
+$longitude1 = 500;
+$longitude2 = 1500;
 
-$latutude = readline("Input latutude: ");
-$longtutude = readline("Input logtutude: ");
-$value_one  = 500.500;
-$value_two  = 1000.1000;
-$value_three= 1500.100;
-$value_four = 2000.100;
-echo coordinates($latutude, $longtutude, $value_one, $value_two, $value_three, $value_four);
+
+$float_validation_longitude = validateFloat($longitude);
+$float_validation_latitude = validateFloat($latitude);
+$min_validation_longitude= validateMin($longitude, 5);
+$min_validation_latitude = validateMin($latitude, 5);
+$max_validation_longitude= validateMax($longitude, 9);
+$max_validation_latitude = validateMax($latitude, 9);
+$validation_my_square_latitude = validateMySquare($latitude, $latitude1, $longitude2);
+$validation_my_square_longitude = validateMySquare($longitude, $latitude1, $longitude2);
+echo $float_validation_latitude . $float_validation_longitude . $max_validation_longitude . $max_validation_latitude . $min_validation_longitude . $min_validation_latitude . $validation_my_square_latitude . $validation_my_square_longitude;
+
