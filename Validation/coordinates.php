@@ -3,15 +3,15 @@
  function validateFloat($value) : string
 {
 	if (!filter_var($value, FILTER_VALIDATE_FLOAT)) {
-		return "Type of value is correct!";
-	} else {
 		return "ERROR: Type of value must be float!";
+	} else {
+		return "Type of value is correct!";
 	}
 }
 
 function validateMin($value, $min_value) : string
 {
-	if ($value <= $min_value) {
+	if (strlen($value) <= $min_value) {
 		return "ERROR: Too few characters sent";
 	} else {
 		return "Min characters OK";
@@ -20,7 +20,7 @@ function validateMin($value, $min_value) : string
 
 function validateMax($value, $max_value) : string
 {
-	if ($value >= $max_value) {
+	if (strlen($value) >= $max_value) {
 		return "ERROR: Too many characters sent";
 	} else {
 		return "Max characters OK";
