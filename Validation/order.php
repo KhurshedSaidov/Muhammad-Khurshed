@@ -41,26 +41,6 @@ function validateInArray($fish_name, $min_value, $max_value, $fishes)
     }
     return "The fish is not in list!";
 }
-/*
-function orderToFisherman($fish_name, $fish_number)
-{
-    $validate_string = validateString($fish_name);
-    $validate_integer = validateInteger($fish_number);
-    $min_value = 3;
-    $max_value = 20;
-    $validate_min = validateMin($fish_name, $min_value);
-    $validate_max = validateMax($fish_name, $max_value);
-    $fishes = array(
-        'Щука',
-        'Судак',
-        'Берш',
-        'Карась',
-        'Толстолобик',
-        'Форель'
-    );
-    $in_array = validateInArray($fish_name, $fishes);
-    return $validate_string . $validate_integer . $validate_min . $validate_max . $in_array;
-}*/
 
 function validate ($rules, $fish_name, $fishes, $fish_number){
     $arr_rules = explode("|", $rules);
