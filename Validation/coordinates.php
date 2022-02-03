@@ -1,6 +1,6 @@
 <?php
 
-function validateFloat($value) : string
+ function validateFloat($value) : string
 {
 	if (!filter_var($value, FILTER_VALIDATE_FLOAT)) {
 		return "ERROR: Type of value must be float!";
@@ -54,5 +54,6 @@ $max_validation_longitude= validateMax($longitude, 9);
 $max_validation_latitude = validateMax($latitude, 9);
 $validation_my_square_latitude = validateMySquare($latitude, $latitude1, $longitude2);
 $validation_my_square_longitude = validateMySquare($longitude, $latitude1, $longitude2);
-echo $float_validation_latitude . $float_validation_longitude . $max_validation_longitude . $max_validation_latitude . $min_validation_longitude . $min_validation_latitude . $validation_my_square_latitude . $validation_my_square_longitude;
+echo $float_validation_latitude . ' ' . $float_validation_longitude . ' ' . $max_validation_longitude . ' ' . $min_validation_latitude . ' ' . $min_validation_longitude . ' ' . $max_validation_latitude . ' ' . $max_validation_longitude . ' ' . $validation_my_square_latitude . ' ' . $validation_my_square_longitude;
+
 
