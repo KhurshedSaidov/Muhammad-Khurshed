@@ -9,7 +9,7 @@ function validateString($fish_name)
         return "422: The type of Fish name is incorrectly!";
 }
 
-function validateInteger($fish_quantity)
+function validateInteger($fish_name, $fish_quantity)
 {
     if (is_numeric($fish_quantity) && $fish_quantity != 0) {
         return "200: Fish number type is ok!";
@@ -38,7 +38,7 @@ function validateMax($fish_name, $max_value)
         return "Max number of characters are ok!";
 }
 
-function validateInArray($fish_name, $fishes)
+function validateIn($fish_name, $fishes)
 {
     if (in_array($fish_name, $fishes)) {
         return "The fish is in list!";
@@ -47,14 +47,22 @@ function validateInArray($fish_name, $fishes)
         return "The fish is not in list!";
 }
 
-function validate ($fish_name, $fishes, $fish_quantity){
-
+function validate ($rules, $fish_name, $array, $fish_quantity){
+    $rules = explode("|", $rules);
     $messages = [];
-    array_push($messages, call_user_func('validateString', $fish_name));
-    array_push($messages, call_user_func('validateInteger', $fish_quantity));
-    array_push($messages, call_user_func_array('validateMin', [$fish_name, 2]));
-    array_push($messages, call_user_func_array('validateMax', [$fish_name, 20]));
-    array_push($messages, call_user_func_array('validateInArray', [$fish_name, $fishes]));
+
+    foreach ($rules as $rule) {
+        $rule = explode(':', $rule);
+        if (isset($rule[1])) {
+            if ($rule[1] == '$array') {
+                $rule[1] = $array;
+            }
+            $message = call_user_func_array('validate' . ucfirst($rule[0]), [$fish_name, $rule[1], $fish_quantity]);
+        }
+        else
+            $message = call_user_func_array('validate' . ucfirst($rule[0]), [$fish_name, $fish_quantity]);
+        $messages[] = $message;
+    }
      return $messages;
 }
 
@@ -69,7 +77,7 @@ function index($fish_name, $fish_quantity)
         'Форель'
     ];
     $rules = 'string|integer|min:3|max:20|in:$array';
-    $messages = validate($fish_name, $fishes, $fish_quantity);
+    $messages = validate($rules, $fish_name, $fishes, $fish_quantity);
 
     return count ($messages)
         ? implode(",<br/>", $messages)
