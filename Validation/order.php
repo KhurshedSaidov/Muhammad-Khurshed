@@ -32,43 +32,38 @@ function validateMax($fish_name, $max_value)
 {
     if (mb_strlen($fish_name) >= $max_value) {
         return "A lot of characters in the order!";
-
     }
     else
         return "Max number of characters are ok!";
 }
 
-function validateIn($fish_name, $fishes)
+function validateIn($fish_name, $value, $available_fishes)
 {
-    if (in_array($fish_name, $fishes)) {
+    if (in_array($fish_name, $available_fishes)) {
         return "The fish is in list!";
     }
     else
         return "The fish is not in list!";
 }
 
-function validate ($rules, $fish_name, $array, $fish_quantity){
+function validate ($rules, $fish_name, $available_fishes, $fish_quantity){
     $rules = explode("|", $rules);
     $messages = [];
 
     foreach ($rules as $rule) {
         $rule = explode(':', $rule);
         if (isset($rule[1])) {
-            if ($rule[1] == '$array') {
-                $rule[1] = $array;
-            }
-            $message = call_user_func_array('validate' . ucfirst($rule[0]), [$fish_name, $rule[1], $fish_quantity]);
+            $messages[] = call_user_func_array('validate' . ucfirst($rule[0]), [$fish_name, $rule[1], $available_fishes, $fish_quantity]);
         }
         else
-            $message = call_user_func_array('validate' . ucfirst($rule[0]), [$fish_name, $fish_quantity]);
-        $messages[] = $message;
+            $messages[] = call_user_func_array('validate' . ucfirst($rule[0]), [$fish_name, $fish_quantity]);
     }
      return $messages;
 }
 
 function index($fish_name, $fish_quantity)
 {
-    $fishes = [
+    $available_fishes = [
         'Щука',
         'Судак',
         'Берш',
@@ -77,7 +72,7 @@ function index($fish_name, $fish_quantity)
         'Форель'
     ];
     $rules = 'string|integer|min:3|max:20|in:$array';
-    $messages = validate($rules, $fish_name, $fishes, $fish_quantity);
+    $messages = validate($rules, $fish_name, $available_fishes, $fish_quantity);
 
     return count ($messages)
         ? implode(",<br/>", $messages)
