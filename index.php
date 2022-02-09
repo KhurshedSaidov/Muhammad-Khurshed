@@ -1,48 +1,18 @@
 <?php
-/*
-Ingredients for Atlanta:
-    * 100 ml pepsi
-    * 60 ml orange juice
-    * 30 g lemon
-    * ice
-*/
-
-function Atlanta
-(int $pepsi,
-int $orange_juice,
-int $lemon,
-int $ice)
-
-{
-    echo "
-    1. Смешайте $pepsi мл пепси с $orange_juice мл апельсинового сока. <br>
-    2. Добавьте $lemon грамм лимона и $ice кубиков льда. <br>
-    ";
-}
-Atlanta(100, 60, 30, 5);
-echo "hello";
-/*
-Ingredients for JUNGLE BANANA MINT COCKTAIL
-    Bananas (large): 2 PC.
-    Mint (twigs): 4 PC.
-    Honey: 2 tablespoon
-    Mineral water: taste
-*/
-function cocktailJungle (
-    int $banana,
-    int $mint,
-    int $honey
-) 
-{
-    echo "
-    <hr style='margin:10px 0 10px 0;>
-    1. $banana банана очистить и крупно нарезать.<br>
-    2. $mint мята вымыть, обсушить и разобрать на листики и растереть в кашицу.<br>
-    3. Взбить блендером бананы с мятой и $honey стол.л медом.<br>
-    4. Влить минеральную воду и снова взбить.<br>
-    5. Украшение. Банан нарезать кружочками.<br>
-    6. Готовый коктейль разлить по бокалам и украсить кружочками банана.";
-}
-cocktailJungle(3, 4, 2);
-
+require 'header.php';
 ?>
+
+<form action="functions.php" method="post">
+
+        <div class="form-group">
+            <label for="fish_name">What fish do you want?</label>
+            <input id="fish_name" type="text" class="form-control" placeholder="Форель" name="fish_name"/>
+        </div>
+        <div class="form-group">
+            <label for="$fish_quantity">How many do you want?</label>
+            <input id="$fish_quantity" type="text" class="form-control" placeholder="2" name="fish_quantity"/>
+        </div>
+        <button type="submit" class="btn btn-primary">Order</button>
+    </div>
+</body>
+</html>

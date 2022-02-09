@@ -1,5 +1,5 @@
 <?php
-
+require 'header.php';
 function validateString($fish_name)
 {
     if (is_string($fish_name)) {
@@ -58,7 +58,7 @@ function validate ($rules, $fish_name, $available_fishes, $fish_quantity){
         else
             $messages[] = call_user_func_array('validate' . ucfirst($rule[0]), [$fish_name, $fish_quantity]);
     }
-     return $messages;
+    return $messages;
 }
 
 function index($fish_name, $fish_quantity)
@@ -78,8 +78,7 @@ function index($fish_name, $fish_quantity)
         ? implode(",<br/>", $messages)
         : 'No validation order';
 }
-
-$fish_name = readline("Input the name of fish, please: ");
-$fish_quantity = (int)readline("Input the number of fish, please: ");
+$fish_name = $_POST['fish_name'];
+$fish_quantity = (int) $_POST['fish_quantity'];
 
 echo index($fish_name, $fish_quantity);
